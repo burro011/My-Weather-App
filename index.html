@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <title>Weather</title>
+    <link rel="stylesheet" href="src/styles.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            The weather in:
+        </h1>
+        <h2 id="city">
+            Chicago
+        </h2>
+        <h3 id="dateNow">
+            Sunday, January 23rd, 2022
+            <div class="time">
+                19:00
+            </div>
+        </h3>
+        <form class="search-form" id="search-form">
+            <div class="mb-3">
+                <input type="search" placeholder="Type a city..." autofocus="on" autocomplete="off"
+                    class="form-control shadow-sm" id="city-input">
+            </div>
+            <div class="row">
+                <div class="buttons">
+                    <button type="submit" class="btn btn-primary shadow-sm" id="searchButton">
+                        Search
+                    </button>
+                    <button type="submit" class="btn btn-secondary shadow-sm" id="currentCityButton">
+                        Current City
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-5">
+                <h4>
+                    <div class="mainEmoji">
+                        🌥
+                    </div>
+                    <br />
+                    <div id="temperature">
+                        <div class="float-left">
+                            <span id="temperature-today">19</span>
+                            <span class="units">
+                                <a href="#" id="celsius-link">°C</a> |
+                                <a href="#" id="fahrenheit-link">°F</a>
+                            </span>
+                        </div>
+                    </div>
+                </h4>
+
+            </div>
+            <div class="col-5">
+                <div>
+                    <ul class="weatherDetails">
+                        <li id="description">
+                            Partly Cloudy
+                        </li>
+                        <li id="humidityLog">
+                            Humidity: <span id="humidity">12</span>
+                        </li>
+                        <li class="feelsLike">
+                            Feels like: <span id="tempFeels">43</span>°
+                        </li>
+                        <li class="tempMaxMin"> High: <span id="tempHigh">25</span>° Low: <span id="tempLow">14</span>°
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <p class="dayOfTheWeek">Monday</p>
+                <br />
+                <p class="emoji">☀️</p>
+                <div class="tempHighLow">
+                    19℉/30℉
+                    <p>2%</p>
+                </div>
+            </div>
+            <div class="col">
+                <p class="dayOfTheWeek">Tuesday</p>
+                <br />
+                <p class="emoji">⛈</p>
+                <div class="tempHighLow">
+                    10℉/22℉
+                    <p>85%</p>
+                </div>
+            </div>
+            <div class="col">
+                <p class="dayOfTheWeek">Wednesday</p>
+                <br />
+                <p class="emoji">⛈</p>
+                <div class="tempHighLow">
+                    12℉/21℉
+                    <p>97%</p>
+                </div>
+            </div>
+            <div class="col">
+                <p class="dayOfTheWeek">Thursday</p>
+                <br />
+                <p class="emoji">🌥</p>
+                <div class="tempHighLow">
+                    20℉/33℉
+                    <p>12%</p>
+                </div>
+            </div>
+            <div class="col">
+                <p class="dayOfTheWeek">Friday</p>
+                <br />
+                <p class="emoji">☀️</p>
+                <div class="tempHighLow">
+                    25℉/37℉
+                    <p>0%</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="src/script.js"></script>
+</body>
+
+</html>
