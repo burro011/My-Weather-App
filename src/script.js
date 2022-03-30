@@ -25,30 +25,33 @@ let dateElement = document.querySelector("#dateNow");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
 //Search engine, replace city name
-function search(event) {
-  event.preventDefault();
-  let city = document.querySelector("city-input").value;
-  searchCity(city);
-}
 function searchCity(city) {
   let apiKey = "0146ed6e16dd8f3acb772a638fd1b45a";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(displayWeatherCondition)
+  axios.get(apiUrl).then(displayWeather);
+}
+function searching(event) {
+  event.preventDefault();
+  let city = document.querySelector("#city-input").value;
+  searchCity(city);
 }
 function searchLocation(position) {
   let apiKey = "0146ed6e16dd8f3acb772a638fd1b45a";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitutde}&appid=${apiKey}&units=metic`;
-  axios.get(apiUrl).then(displayWeatherCondition);
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitutde;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metic`;
+  
+  axios.get(apiUrl).then(displayWeather);
 }
 function currentPosition(event) {
   event.preventDefault();
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 //Weather of searched city
-function displayWeatherCondition(response) {
+function displayWeather(response) {
   document.querySelector("#city").innerHTML = response.data.name;
   document.querySelector("#temperature-today").innerHTML = Math.round(response.data.main.temp);
-  document.querySelector("#description").innerHTML = response.data.weather.[0].main;
+  document.querySelector("#description").innerHTML = response.data.weather[0].main;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
   document.querySelector("#tempFeels").innerHTML = Math.round(response.data.main.feels_like);
   document.querySelector("#tempHigh").innerHTML = Math.round(response.data.main.temp_max);
@@ -73,9 +76,7 @@ let celsius = document.querySelector("#celsius-link");
 celsius.addEventListener("click", convertToCelsius);
 
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", search);
+searchForm.addEventListener("submit", searching);
 
 let currentLocationButton = document.querySelector("#currentCityButton");
 currentLocationButton.addEventListener("click", currentPosition);
-
-searchCity("New York");
