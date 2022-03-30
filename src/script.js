@@ -2,21 +2,21 @@
 function formatDate(date) {
   let hours = date.getHours();
   if (hours < 10) {
-      hours = `0${hours}`;
+    hours = `0${hours}`;
   }
   let minutes = date.getMinutes();
   if (minutes < 10) {
-      minutes = `0${minutes}`;
+    minutes = `0${minutes}`;
   }
   let dayIndex = date.getDay();
   let days = [
-      "Sunday",
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday"
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
   ];
   let day = days[dayIndex];
   return `${day} ${hours}:${minutes}`;
@@ -38,9 +38,9 @@ function searching(event) {
 function searchLocation(position) {
   let apiKey = "0146ed6e16dd8f3acb772a638fd1b45a";
   let lat = position.coords.latitude;
-  let lon = position.coords.longitutde;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metic`;
-  
+  let lon = position.coords.longitude;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
   axios.get(apiUrl).then(displayWeather);
 }
 function currentPosition(event) {
@@ -50,12 +50,21 @@ function currentPosition(event) {
 //Weather of searched city
 function displayWeather(response) {
   document.querySelector("#city").innerHTML = response.data.name;
-  document.querySelector("#temperature-today").innerHTML = Math.round(response.data.main.temp);
-  document.querySelector("#description").innerHTML = response.data.weather[0].main;
+  document.querySelector("#temperature-today").innerHTML = Math.round(
+    response.data.main.temp
+  );
+  document.querySelector("#description").innerHTML =
+    response.data.weather[0].main;
   document.querySelector("#humidity").innerHTML = response.data.main.humidity;
-  document.querySelector("#tempFeels").innerHTML = Math.round(response.data.main.feels_like);
-  document.querySelector("#tempHigh").innerHTML = Math.round(response.data.main.temp_max);
-  document.querySelector("#tempLow").innerHTML = Math.round(response.data.main.temp_min);
+  document.querySelector("#tempFeels").innerHTML = Math.round(
+    response.data.main.feels_like
+  );
+  document.querySelector("#tempHigh").innerHTML = Math.round(
+    response.data.main.temp_max
+  );
+  document.querySelector("#tempLow").innerHTML = Math.round(
+    response.data.main.temp_min
+  );
 }
 //Celsius-Fahrenheit converstion
 function convertToFahrenheit(event) {
