@@ -59,6 +59,7 @@ function displayWeather(response) {
   document.querySelector("#tempFeels").innerHTML = Math.round(
     response.data.main.feels_like
   );
+  document.querySelector("#wind").innerHTML = Math.round(response.data.wind.speed);
   document.querySelector("#tempHigh").innerHTML = Math.round(
     response.data.main.temp_max
   );
