@@ -86,6 +86,13 @@ h3 {
   text-align: center;
   margin: 5px;
 }
+li:first-letter {
+  text-transform: capitalize;
+}
+#icon {
+  margin: 0 auto;
+  bottom: -10px;
+}
 h4 {
   font-size: 45px;
   font-family: "Inter", sans-serif;
@@ -96,6 +103,7 @@ h4 {
 .mainEmoji {
   font-size: 110px;
   line-height: 0px;
+  margin: -10 auto;
 }
 .units {
   position: relative;
