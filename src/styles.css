@@ -11,8 +11,8 @@ body {
   border: 4px solid #759fbc;
   border-radius: 25px;
   max-width: 700px;
-  background: linear-gradient(to top, #09203f 0%, #537895 100%);
-  color: #e7eaf6;
+  background: linear-gradient(178deg, rgba(201, 234, 252, 0.51) 14.9%, rgba(139, 192, 216, 0.73) 80%);
+  color: #527795;
   margin: 10px auto 0px;
   font-family: "Inter", sans-serif;
 }
