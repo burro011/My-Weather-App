@@ -11,8 +11,8 @@ body {
   border: 4px solid #759fbc;
   border-radius: 25px;
   max-width: 700px;
-  background: linear-gradient(178deg, rgba(201, 234, 252, 0.51) 14.9%, rgba(139, 192, 216, 0.73) 80%);
-  color: #527795;
+  background: linear-gradient(360deg, #7085B6 0%, #87A7D9 50%, #DEF3F8 100%);
+  color: #4a72b2;
   margin: 10px auto 0px;
   font-family: "Inter", sans-serif;
 }
@@ -55,8 +55,8 @@ h3 {
 
 .btn-primary {
   color: #e7eaf6;
-  background: #527795;
-  border: 1px solid #527795;
+  background: #4a72b2;
+  border: 1px solid #4a72b2;
   border-radius: 25px;
   padding: 0px 45px;
   transition: all 200ms ease-in-out;
@@ -65,12 +65,12 @@ h3 {
 .btn-primary:hover {
   background: #0a2140;
   color: #e7eaf6;
-  border: 1px solid #527795;
+  border: 1px solid #4a72b2;
 }
 .btn-secondary {
   color: #e7eaf6;
-  background: #527795;
-  border: 1px solid #527795;
+  background: #4a72b2;
+  border: 1px solid #4a72b2;
   border-radius: 25px;
   padding: 0px 45px;
   transition: all 200ms ease-in-out;
@@ -124,11 +124,24 @@ h4 {
   line-height: 35px;
   margin: 0 0 40px;
 }
-.col {
-  line-height: 15px;
+.weather-forecast {
+  margin-top: 5px;
+  text-align: center;
+  margin-bottom: 30px;
 }
-.dayOfTheWeek {
-  font-family: "Inter", sans-serif;
+.weather-forecast-date {
+  font-size: 16px;
+  color: rgba(210, 233, 244, .8);
+  margin: -10px auto;
+}
+.weather-forecast-temperature {
+  font-size: 13px;
+  color: rgba(210, 233, 244, .6);
+  margin: -10px auto;
+}
+.weather-forecast-high {
+  color:rgba(210, 233, 244, 1);
+
 }
 .sourceCode {
   margin: 0px 10px 10px;
