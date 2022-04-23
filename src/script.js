@@ -25,6 +25,41 @@ function formatDate(timestamp) {
 let dateElement = document.querySelector("#dateNow");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
+//Displaying forecast
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+
+  let forecastHTML = `<div class="row">`;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday"];
+    days.forEach(function(day) {
+          forecastHTML = forecastHTML +`
+                <div class="col-2">
+                    <div class="weather-forecast-date">
+                        ${day}
+                    </div>
+
+                    <img 
+                    src="http://openweathermap.org/img/wn/50d@2x.png"
+                    alt=""
+                    width="75"
+                    class="weather-forecast-icon"
+                    />
+                    <div class="weather-forecast-temperature">
+                       <span class="weather-forecast-high">18°</span> <span class="weather-forecast-low">12°</span>
+                    </div>
+                </div>`;
+    });
+
+ 
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
 //Search engine, replace city name
 function searchCity(city) {
   let apiKey = "0146ed6e16dd8f3acb772a638fd1b45a";
@@ -109,3 +144,5 @@ searchForm.addEventListener("submit", searching);
 
 let currentLocationButton = document.querySelector("#currentCityButton");
 currentLocationButton.addEventListener("click", currentPosition);
+
+displayForecast();
