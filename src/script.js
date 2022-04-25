@@ -25,8 +25,15 @@ function formatDate(timestamp) {
 let dateElement = document.querySelector("#dateNow");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
-//Displaying forecast
-function displayForecast() {
+//Forecast Functions
+function getForecast(coordinates) {
+  let apiKey = "0146ed6e16dd8f3acb772a638fd1b45a";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
@@ -60,6 +67,7 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
 //Search engine, replace city name
 function searchCity(city) {
   let apiKey = "0146ed6e16dd8f3acb772a638fd1b45a";
@@ -111,6 +119,8 @@ function displayWeather(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
   iconElement.setAttribute("alt", response.data.weather[0].description);
+  
+  getForecast(response.data.coord);
 }
 //Celsius-Fahrenheit converstion
 function convertToFahrenheit(event) {
@@ -144,5 +154,3 @@ searchForm.addEventListener("submit", searching);
 
 let currentLocationButton = document.querySelector("#currentCityButton");
 currentLocationButton.addEventListener("click", currentPosition);
-
-displayForecast();
