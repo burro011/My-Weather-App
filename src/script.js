@@ -43,7 +43,7 @@ function formatForecastDay(timestamp) {
 //Forecast Functions
 function getForecast(coordinates) {
   let apiKey = "0146ed6e16dd8f3acb772a638fd1b45a";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
@@ -77,12 +77,13 @@ function displayForecast(response) {
  
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
+
 }
 
 //Search engine, replace city name
 function searchCity(city) {
   let apiKey = "0146ed6e16dd8f3acb772a638fd1b45a";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   axios.get(apiUrl).then(displayWeather);
 }
 function searching(event) {
@@ -129,33 +130,8 @@ function displayWeather(response) {
   
   getForecast(response.data.coord);
 }
-//Celsius-Fahrenheit converstion
-function convertToFahrenheit(event) {
-   event.preventDefault();
-  let temperatureElement = document.querySelector("#temperature-today");
 
-  celsius.classList.remove("active");
-  fahrenheit.classList.add("active");
-  let fahrenheiTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheiTemperature);
-}
-
-function convertToCelsius(event) {
-  event.preventDefault();
-  celsius.classList.add("active");
-  fahrenheit.classList.remove("active");
-  let temperatureElement = document.querySelector("#temperature-today");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
 //Calls
-let celsiusTemperature = null;
-
-let fahrenheit = document.querySelector("#fahrenheit-link");
-fahrenheit.addEventListener("click", convertToFahrenheit);
-
-let celsius = document.querySelector("#celsius-link");
-celsius.addEventListener("click", convertToCelsius);
-
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", searching);
 
