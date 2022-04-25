@@ -25,6 +25,21 @@ function formatDate(timestamp) {
 let dateElement = document.querySelector("#dateNow");
 let currentTime = new Date();
 dateElement.innerHTML = formatDate(currentTime);
+
+function formatForecastDay(timestamp) {
+ let date = new Date(timestamp * 1000);
+ let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+ return days[day]; 
+}
 //Forecast Functions
 function getForecast(coordinates) {
   let apiKey = "0146ed6e16dd8f3acb772a638fd1b45a";
@@ -33,35 +48,31 @@ function getForecast(coordinates) {
   axios.get(apiUrl).then(displayForecast);
 }
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
+
   let forecastElement = document.querySelector("#forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday"];
-    days.forEach(function(day) {
+
+    forecast.forEach(function(forecastDay, index) {
+      if (index < 6) {
           forecastHTML = forecastHTML +`
                 <div class="col-2">
                     <div class="weather-forecast-date">
-                        ${day}
+                        ${formatForecastDay(forecastDay.dt)}
                     </div>
 
                     <img 
-                    src="http://openweathermap.org/img/wn/50d@2x.png"
+                    src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png"
                     alt=""
                     width="75"
                     class="weather-forecast-icon"
                     />
                     <div class="weather-forecast-temperature">
-                       <span class="weather-forecast-high">18°</span> <span class="weather-forecast-low">12°</span>
+                       <span class="weather-forecast-high">${Math.round(forecastDay.temp.max)}°</span> <span class="weather-forecast-low">${Math.round(forecastDay.temp.min)}°</span>
                     </div>
                 </div>`;
-    });
+    }});
 
  
   forecastHTML = forecastHTML + `</div>`;
@@ -99,8 +110,6 @@ function displayWeather(response) {
   let humidityElement = document.querySelector("#humidity");
   let realFeelElement= document.querySelector("#tempFeels");
   let windElement = document.querySelector("#wind");
-  let highElement = document.querySelector("#tempHigh");
-  let lowElement = document.querySelector("#tempLow");
   let dateElement = document.querySelector("#dateNow");
   let iconElement = document.querySelector("#icon");
 
@@ -112,8 +121,6 @@ function displayWeather(response) {
   humidityElement.innerHTML = response.data.main.humidity;
   realFeelElement.innerHTML = Math.round(response.data.main.feels_like);
   windElement.innerHTML = Math.round(response.data.wind.speed);
-  highElement.innerHTML = Math.round(response.data.main.temp_max);
-  lowElement.innerHTML = Math.round(response.data.main.temp_min);
   dateElement.innerHTML = formatDate(response.data.dt * 1000);
   iconElement.setAttribute(
     "src",
